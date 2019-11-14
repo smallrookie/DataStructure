@@ -105,7 +105,8 @@ public class Array<E> {
         size--;
         data[size] = null; // loitering objects != memory leak
 
-        if (size == data.length / 2) {
+        // 解决时间复杂度震荡问题
+        if (size == data.length / 4 && data.length / 2 != 0) {
             resize(data.length / 2);
         }
 
