@@ -25,6 +25,11 @@
 	- 考试  
 	- 工作  
 
+## 开发环境
+
+- 编程语言：Java，jdk 1.8.0
+- 开发工具：IntelliJ IDEA
+
 ## 课程地址  
 
 [慕课网](https://coding.imooc.com/class/207.html)
