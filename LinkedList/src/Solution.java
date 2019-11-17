@@ -61,19 +61,35 @@ public class Solution {
 //        return head;
 //    }
 
-    // 具有虚拟头结点的链表
-    public ListNode removeElements(ListNode head, int val) {
-        ListNode dummyHead = new ListNode(-1);
-        dummyHead.next = head;
+//    // 具有虚拟头结点的链表
+//    public ListNode removeElements(ListNode head, int val) {
+//        ListNode dummyHead = new ListNode(-1);
+//        dummyHead.next = head;
+//
+//        ListNode prev = dummyHead;
+//        while (prev.next != null) {
+//            if (prev.next.val == val)
+//                prev.next = prev.next.next;
+//            else
+//                prev = prev.next;
+//        }
+//        return dummyHead.next;
+//    }
 
-        ListNode prev = dummyHead;
-        while (prev.next != null) {
-            if (prev.next.val == val)
-                prev.next = prev.next.next;
-            else
-                prev = prev.next;
-        }
-        return dummyHead.next;
+    // 递归
+    public ListNode removeElements(ListNode head, int val) {
+        if (head == null) return null;
+
+//        ListNode res = removeElements(head.next, val);
+//        if (head.val == val)
+//            return res;
+//        else {
+//            head.next = res;
+//            return head;
+//        }
+
+        head.next = removeElements(head.next, val);
+        return head.val == val ? head.next : head;
     }
 
     public static void main(String[] args) {
