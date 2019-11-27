@@ -9,6 +9,9 @@ public class Main {
         bst.preOrder();
         System.out.println("\n");
 
+        bst.preOrderNR();
+        System.out.println("\n");
+
         // 二分搜索树中序遍历结果即为树中元素以升序排列的结果
         bst.InOrder();
         System.out.println("\n");
