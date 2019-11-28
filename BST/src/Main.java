@@ -1,26 +1,40 @@
+import java.util.ArrayList;
+import java.util.Random;
+
 public class Main {
 
     public static void main(String[] args) {
         BST<Integer> bst = new BST<>();
-        int[] nums = {5, 3, 6, 8, 4, 2};
-        for (int num: nums)
-            bst.add(num);
 
-        bst.preOrder();
-        System.out.println("\n");
+        int n = 1000;
+        Random random = new Random();
 
-        bst.preOrderNR();
-        System.out.println("\n");
+        // test removeMin
+        for (int i = 0; i < n; i++) {
+            bst.add(random.nextInt(10000));
+        }
+        ArrayList<Integer> nums = new ArrayList<>();
+        while (!bst.isEmpty()) {
+            nums.add(bst.removeMin());
+        }
+        for (int i = 1; i < nums.size(); i++) {
+            if (nums.get(i - 1) > nums.get(i))
+                throw new IllegalArgumentException("Error!");
+        }
+        System.out.println("removeMin test completed.");
 
-        // 二分搜索树中序遍历结果即为树中元素以升序排列的结果
-        bst.InOrder();
-        System.out.println("\n");
-
-        // 后序遍历应用：为二分搜索树释放内存
-        bst.postOrder();
-        System.out.println("\n");
-
-        bst.levelOrder();
-        System.out.println("\n");
+        // test removeMax
+        for (int i = 0; i < n; i++) {
+            bst.add(random.nextInt(10000));
+        }
+        nums = new ArrayList<>();
+        while (!bst.isEmpty()) {
+            nums.add(bst.removeMax());
+        }
+        for (int i = 1; i < nums.size(); i++) {
+            if (nums.get(i - 1) < nums.get(i))
+                throw new IllegalArgumentException("Error!");
+        }
+        System.out.println("removeMax test completed.");
     }
 }

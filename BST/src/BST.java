@@ -177,6 +177,48 @@ public class BST<E extends Comparable<E>> {
         return maximum(node.right);
     }
 
+    // 删除二分搜索树的最小元素
+    public E removeMin() {
+        E ret = minimum();
+        root = removeMin(root);
+        return ret;
+    }
+
+    // 删除以node为根的二分搜索树中的最小结点
+    // 返回删除结点后新的二分搜索树的根
+    private Node removeMin(Node node) {
+        if (node.left == null) {
+            Node rightNode = node.right;
+            node.right = null;
+            size--;
+            return rightNode;
+        }
+
+        node.left = removeMin(node.left);
+        return node;
+    }
+
+    // 删除二分搜索树的最大元素
+    public E removeMax() {
+        E ret = maximum();
+        root = removeMax(root);
+        return ret;
+    }
+
+    // 删除以node为根的二分搜索树中的最大结点
+    // 返回删除结点后新的二分搜索树的根
+    private Node removeMax(Node node) {
+        if (node.right == null) {
+            Node leftNode = node.left;
+            node.left = null;
+            size--;
+            return leftNode;
+        }
+
+        node.right = removeMax(node.right);
+        return node;
+    }
+
     @Override
     public String toString() {
         StringBuilder res = new StringBuilder();
