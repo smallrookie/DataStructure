@@ -19,5 +19,8 @@ public class Main {
         // 后序遍历应用：为二分搜索树释放内存
         bst.postOrder();
         System.out.println("\n");
+
+        bst.levelOrder();
+        System.out.println("\n");
     }
 }

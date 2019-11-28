@@ -1,3 +1,5 @@
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Stack;
 
 public class BST<E extends Comparable<E>> {
@@ -83,7 +85,7 @@ public class BST<E extends Comparable<E>> {
         preOrder(node.right);
     }
 
-    // 二叉搜索树的非递归前序遍历-深度优先遍历
+    // 二叉搜索树的非递归前序遍历->深度优先遍历
     public void preOrderNR() {
         Stack<Node> stack = new Stack<>();
         stack.push(root);
@@ -126,6 +128,21 @@ public class BST<E extends Comparable<E>> {
         postOrder(node.left);
         postOrder(node.right);
         System.out.println(node.e);
+    }
+
+    // 二分搜索树的层序遍历->广度优先搜索
+    public void levelOrder() {
+        Queue<Node> queue = new LinkedList<>();
+        queue.add(root);
+        while (!queue.isEmpty()) {
+            Node cur = queue.remove();
+            System.out.println(cur.e);
+
+            if (cur.left != null)
+                queue.add(cur.left);
+            if (cur.right != null)
+                queue.add(cur.right);
+        }
     }
 
     @Override
