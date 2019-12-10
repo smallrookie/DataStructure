@@ -44,7 +44,7 @@ public class AdjMatrix {
 
     // 判断顶点是否合法
     private void vaildateVertex(int v) {
-        if (v < 0 || v > V)
+        if (v < 0 || v >= V)
             throw new IllegalArgumentException("vertex " + v + "is invalid.");
     }
 
