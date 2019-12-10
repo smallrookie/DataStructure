@@ -1,5 +1,6 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class AdjMatrix {
@@ -48,6 +49,26 @@ public class AdjMatrix {
 
     public int E() {
         return E;
+    }
+
+    public boolean hasEdge(int v, int w) {
+        vaildateVertex(v);
+        vaildateVertex(w);
+        return adj[v][w] == 1;
+    }
+
+    public ArrayList<Integer> adj(int v) {
+        vaildateVertex(v);
+        ArrayList<Integer> res = new ArrayList<>();
+        for (int i = 0; i < V; i++) {
+            if (adj[v][i] == 1)
+                res.add(i);
+        }
+        return res;
+    }
+
+    public int degree(int v) {
+        return adj(v).size();
     }
 
     @Override
