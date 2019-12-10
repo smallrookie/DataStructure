@@ -1,30 +1,35 @@
+package com.rookie.graphBasics;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.Scanner;
 
-public class AdjMatrix {
+public class AdjList {
 
-    // 顶点数
     private int V;
-    // 边数
     private int E;
-    // 邻接矩阵
-    private int[][] adj;
+    private LinkedList<Integer>[] adj;
 
-    // 创建邻接矩阵
-    public AdjMatrix(String filename) throws FileNotFoundException {
+    // 创建邻接表
+    public AdjList(String filename) throws FileNotFoundException {
+
         File file = new File(filename);
         Scanner scanner = new Scanner(file);
 
         V = scanner.nextInt();
         if (V < 0)
             throw new IllegalArgumentException("V must be non-negative.");
-        adj = new int[V][V];
+        adj = new LinkedList[V];
+        for (int i = 0; i < V; i++) {
+            adj[i] = new LinkedList<Integer>();
+        }
 
         E = scanner.nextInt();
         if (E < 0)
-            throw new IllegalArgumentException("E must be non-negative.");
+            throw new IllegalArgumentException("E must be non-negative");
+
         for (int i = 0; i < E; i++) {
             int a = scanner.nextInt();
             validateVertex(a);
@@ -35,10 +40,10 @@ public class AdjMatrix {
             if (a == b)
                 throw new IllegalArgumentException("Self Loop is Detected.");
 
-            if (adj[a][b] == 1)
+            if (adj[a].contains(b))
                 throw new IllegalArgumentException("Parallel Edges are Detected.");
-            adj[a][b] = 1;
-            adj[b][a] = 1;
+            adj[a].add(b);
+            adj[b].add(a);
         }
     }
 
@@ -60,32 +65,29 @@ public class AdjMatrix {
     public boolean hasEdge(int v, int w) {
         validateVertex(v);
         validateVertex(w);
-        return adj[v][w] == 1;
+        return adj[v].contains(w);
     }
 
     // 返回与顶点v连通的顶点列表
-    public ArrayList<Integer> adj(int v) {
+    public Iterable<Integer> adj(int v) {
         validateVertex(v);
-        ArrayList<Integer> res = new ArrayList<>();
-        for (int i = 0; i < V; i++) {
-            if (adj[v][i] == 1)
-                res.add(i);
-        }
-        return res;
+        return adj[v];
     }
 
     // 返回顶点v的度
     public int degree(int v) {
-        return adj(v).size();
+        validateVertex(v);
+        return adj[v].size();
     }
 
     @Override
     public String toString() {
         StringBuilder res = new StringBuilder();
         res.append(String.format("V: %d, E: %d\n", V, E));
-        for (int i = 0; i < V; i++) {
-            for (int j = 0; j < V; j++) {
-                res.append(String.format("%d ", adj[i][j]));
+        for (int v = 0; v < V; v++) {
+            res.append(String.format("%d: ", v));
+            for (int w : adj[v]) {
+                res.append(String.format("%d ", w));
             }
             res.append("\n");
         }
