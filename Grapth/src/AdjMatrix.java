@@ -5,10 +5,14 @@ import java.util.Scanner;
 
 public class AdjMatrix {
 
+    // 顶点数
     private int V;
+    // 边数
     private int E;
+    // 邻接矩阵
     private int[][] adj;
 
+    // 创建邻接矩阵
     public AdjMatrix(String filename) throws FileNotFoundException {
         File file = new File(filename);
         Scanner scanner = new Scanner(file);
@@ -22,22 +26,23 @@ public class AdjMatrix {
         if (E < 0)
             throw new IllegalArgumentException("E must be non-negative.");
         for (int i = 0; i < E; i++) {
-            int tmp_a = scanner.nextInt();
-            vaildateVertex(tmp_a);
+            int a = scanner.nextInt();
+            vaildateVertex(a);
 
-            int tmp_b = scanner.nextInt();
-            vaildateVertex(tmp_b);
+            int b = scanner.nextInt();
+            vaildateVertex(b);
 
-            if (tmp_a == tmp_b)
+            if (a == b)
                 throw new IllegalArgumentException("Self Loop is Detected.");
 
-            if (adj[tmp_a][tmp_b] == 1)
+            if (adj[a][b] == 1)
                 throw new IllegalArgumentException("Parallel Edges are Detected.");
-            adj[tmp_a][tmp_b] = 1;
-            adj[tmp_b][tmp_a] = 1;
+            adj[a][b] = 1;
+            adj[b][a] = 1;
         }
     }
 
+    // 判断顶点是否合法
     private void vaildateVertex(int v) {
         if (v < 0 || v > V)
             throw new IllegalArgumentException("vertex " + v + "is invalid.");
@@ -51,12 +56,14 @@ public class AdjMatrix {
         return E;
     }
 
+    // 判断顶点v和顶点w是否连通
     public boolean hasEdge(int v, int w) {
         vaildateVertex(v);
         vaildateVertex(w);
         return adj[v][w] == 1;
     }
 
+    // 返回与顶点v连通的顶点列表
     public ArrayList<Integer> adj(int v) {
         vaildateVertex(v);
         ArrayList<Integer> res = new ArrayList<>();
@@ -67,6 +74,7 @@ public class AdjMatrix {
         return res;
     }
 
+    // 返回顶点v的度
     public int degree(int v) {
         return adj(v).size();
     }
