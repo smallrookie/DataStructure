@@ -27,10 +27,10 @@ public class AdjMatrix {
             throw new IllegalArgumentException("E must be non-negative.");
         for (int i = 0; i < E; i++) {
             int a = scanner.nextInt();
-            vaildateVertex(a);
+            validateVertex(a);
 
             int b = scanner.nextInt();
-            vaildateVertex(b);
+            validateVertex(b);
 
             if (a == b)
                 throw new IllegalArgumentException("Self Loop is Detected.");
@@ -43,7 +43,7 @@ public class AdjMatrix {
     }
 
     // 判断顶点是否合法
-    private void vaildateVertex(int v) {
+    private void validateVertex(int v) {
         if (v < 0 || v >= V)
             throw new IllegalArgumentException("vertex " + v + "is invalid.");
     }
@@ -58,14 +58,14 @@ public class AdjMatrix {
 
     // 判断顶点v和顶点w是否连通
     public boolean hasEdge(int v, int w) {
-        vaildateVertex(v);
-        vaildateVertex(w);
+        validateVertex(v);
+        validateVertex(w);
         return adj[v][w] == 1;
     }
 
     // 返回与顶点v连通的顶点列表
     public ArrayList<Integer> adj(int v) {
-        vaildateVertex(v);
+        validateVertex(v);
         ArrayList<Integer> res = new ArrayList<>();
         for (int i = 0; i < V; i++) {
             if (adj[v][i] == 1)
