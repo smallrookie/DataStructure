@@ -1,18 +1,17 @@
-package com.rookie.graphBasics;
+package com.rookie.graphDFS;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.LinkedList;
 import java.util.Scanner;
 import java.util.TreeSet;
 
-public class AdjSet {
+public class Graph {
     private int V;
     private int E;
     private TreeSet<Integer>[] adj;
 
     // 创建基于红黑树的邻接表
-    public AdjSet(String filename) throws FileNotFoundException {
+    public Graph(String filename) throws FileNotFoundException {
 
         File file = new File(filename);
         Scanner scanner = new Scanner(file);
