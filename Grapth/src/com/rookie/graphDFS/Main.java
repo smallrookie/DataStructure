@@ -18,5 +18,16 @@ public class Main {
 
         System.out.print("post: ");
         System.out.println(graphDFS.post());
+
+        System.out.println();
+
+        AdjMatrix adjMatrix = new AdjMatrix("g.txt");
+        GraphMatrixDFS graphMatrixDFS = new GraphMatrixDFS(adjMatrix);
+
+        System.out.print("pre: ");
+        System.out.println(graphMatrixDFS.pre());
+
+        System.out.print("post: ");
+        System.out.println(graphMatrixDFS.post());
     }
 }
