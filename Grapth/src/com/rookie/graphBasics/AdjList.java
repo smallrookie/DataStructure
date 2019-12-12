@@ -2,11 +2,10 @@ package com.rookie.graphBasics;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Scanner;
 
-public class AdjList {
+public class AdjList implements Graph {
 
     private int V;
     private int E;
@@ -92,5 +91,10 @@ public class AdjList {
             res.append("\n");
         }
         return res.toString();
+    }
+
+    public static void main(String[] args) throws FileNotFoundException {
+        Graph g = new AdjList("g.txt");
+        System.out.println(g);
     }
 }

@@ -3,10 +3,9 @@ package com.rookie.graphBasics;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.Scanner;
 
-public class AdjMatrix {
+public class AdjMatrix implements Graph {
 
     // 顶点数
     private int V;
@@ -96,5 +95,11 @@ public class AdjMatrix {
             res.append("\n");
         }
         return res.toString();
+    }
+
+    public static void main(String[] args) throws FileNotFoundException {
+
+        Graph g = new AdjMatrix("g.txt");
+        System.out.println(g);
     }
 }

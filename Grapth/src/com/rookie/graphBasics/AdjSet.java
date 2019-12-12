@@ -2,11 +2,10 @@ package com.rookie.graphBasics;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.LinkedList;
 import java.util.Scanner;
 import java.util.TreeSet;
 
-public class AdjSet {
+public class AdjSet implements Graph {
     private int V;
     private int E;
     private TreeSet<Integer>[] adj;
@@ -91,5 +90,11 @@ public class AdjSet {
             res.append("\n");
         }
         return res.toString();
+    }
+
+    public static void main(String[] args) throws FileNotFoundException {
+
+        Graph g = new AdjSet("g.txt");
+        System.out.println(g);
     }
 }
