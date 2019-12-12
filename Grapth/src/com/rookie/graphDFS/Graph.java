@@ -91,4 +91,10 @@ public class Graph {
         }
         return res.toString();
     }
+
+    public static void main(String[] args) throws FileNotFoundException {
+
+        Graph g = new Graph("g.txt");
+        System.out.println(g);
+    }
 }
