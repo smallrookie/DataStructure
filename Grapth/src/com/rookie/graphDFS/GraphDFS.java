@@ -6,7 +6,10 @@ public class GraphDFS {
 
     private Graph G;
     private boolean[] visited;
-    private ArrayList<Integer> order = new ArrayList<>();
+    // 图的前序深度优先遍历
+    private ArrayList<Integer> pre = new ArrayList<>();
+    // 图的后序深度优先遍历
+    private ArrayList<Integer> post = new ArrayList<>();
 
     public GraphDFS(Graph G) {
         this.G = G;
@@ -20,14 +23,23 @@ public class GraphDFS {
     // 图的深度优先遍历，递归
     private void dfs(int v) {
         visited[v] = true;
-        order.add(v);
-        for (int w: G.adj(v))
-            if (!visited[w])
+        pre.add(v);
+        for (int w: G.adj(v)) {
+            if (!visited[w]) {
                 dfs(w);
+            }
+        }
+        post.add(v);
     }
 
-    // 返回深度优先遍历结果
-    public Iterable<Integer> order() {
-        return order;
+    // 返回图的前序深度优先遍历结果
+    public Iterable<Integer> pre() {
+        return pre;
     }
+
+    // 返回图的后序深度优先遍历结果
+    public Iterable<Integer> post() {
+        return post;
+    }
+
 }
