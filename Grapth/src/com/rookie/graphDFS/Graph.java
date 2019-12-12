@@ -46,7 +46,7 @@ public class Graph {
     }
 
     // 判断顶点是否合法
-    private void validateVertex(int v) {
+    protected void validateVertex(int v) {
         if (v < 0 || v >= V)
             throw new IllegalArgumentException("vertex " + v + "is invalid.");
     }
