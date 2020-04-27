@@ -7,8 +7,8 @@ public class HashTable<K, V> {
     private static final int initCapacity = 53;     // HashTable初始容量
 
     private TreeMap<K, V>[] hashtable;
-    private int M;                            // HashTable容量
-    private int size;                         // HashTable元素个数
+    private int M;                                  // HashTable容量
+    private int size;                               // HashTable元素个数
 
     public HashTable(int M) {
         this.M = M;
